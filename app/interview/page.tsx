@@ -75,6 +75,13 @@ export default function InterviewPage() {
     if (!role) router.push('/');
   }, [role, router]);
 
+  // Auto-start the interview
+  useEffect(() => {
+    if (role && status === 'setup') {
+      useInterviewStore.getState().startInterview();
+    }
+  }, [role]);
+
   // Scroll transcript
   useEffect(() => {
     if (transcriptEndRef.current) {
@@ -176,7 +183,7 @@ export default function InterviewPage() {
         }
       );
 
-      if (webcamStream) {
+      if (webcamStream && status === 'listening' && micState === 'LISTENING') {
         harkInstance = startSilenceDetection(
           webcamStream,
           () => {},
