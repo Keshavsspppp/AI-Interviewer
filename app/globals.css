@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --bg-base: #080C14;
+  --bg-surface: #0E1420;
+  --bg-elevated: #141B2D;
+  --bg-subtle: #1C2438;
+
+  /* Brand */
+  --accent-primary: #4F8EF7;
+  --accent-glow: #4F8EF720;
+  --accent-success: #22C55E;
+  --accent-warning: #F59E0B;
+  --accent-danger: #EF4444;
+
+  /* Text */
+  --text-primary: #F0F4FF;
+  --text-secondary: #8B9CC8;
+  --text-tertiary: #4A5578;
+
+  /* Borders */
+  --border-subtle: #1E2A40;
+  --border-active: #4F8EF740;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Design System Utilities ─── */
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+.bg-base { background-color: var(--bg-base); }
+.bg-surface { background-color: var(--bg-surface); }
+.bg-elevated { background-color: var(--bg-elevated); }
+.bg-subtle { background-color: var(--bg-subtle); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+.border-subtle { border-color: var(--border-subtle); }
+.border-active { border-color: var(--border-active); }
+
+.accent-primary { color: var(--accent-primary); }
+.accent-success { color: var(--accent-success); }
+.accent-warning { color: var(--accent-warning); }
+.accent-danger { color: var(--accent-danger); }
+
+/* Card base style */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border-subtle), 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.card:hover {
+  border-color: var(--border-active);
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--accent-primary);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+/* Pill base */
+.pill {
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Interactive elements transition */
+button, a, input, select, [role="button"] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes ambient-breathe {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes mic-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+@keyframes waveform-bar {
+  0%, 100% { height: 20%; }
+  50% { height: 80%; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes stagger-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Scrollbar ─── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-subtle);
+}
+
+/* ─── Print Styles ─── */
+@media print {
+  .print-hidden { display: none !important; }
+  .print-block { display: block !important; }
+}
